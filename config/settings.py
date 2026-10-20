@@ -26,9 +26,13 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "careerstart-internship-portal.onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
