@@ -1,0 +1,193 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerStart | Internship Portal</title>
+  <link rel="stylesheet" href="{% static 'jobs/style.css' %}">
+  {{internships| json_script:"internships-data"}}
+<script src="{% static 'jobs/script.js' %}" defer></script>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="#home" class="logo">Career<span>Start</span></a>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#jobs">Find  s</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <a class="nav-btn" href="#jobs">Explore Jobs</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR CAREER STARTS HERE</p>
+        <h1>Find your dream <span>internship.</span></h1>
+        <p class="subtitle">
+          Discover opportunities, explore companies,
+          and take the first step toward your career.
+        </p>
+
+        <form id="searchForm" class="search-box">
+          <input id="searchInput" type="search" placeholder="Job title or skill..." aria-label="Search jobs">
+
+          <select id="locationFilter" aria-label="Location">
+            <option value="">All Locations</option>
+            <option value="Remote">Remote</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="New Delhi">New Delhi</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Noida"> Noida, India</option>
+          </select>
+
+          <button type="submit">Search Jobs</button>
+        </form>
+
+        <p class="popular">
+          Popular: Python · Web Development · Data Science
+        </p>
+      </div>
+    </section>
+<section class="category-section" id="categories">
+    <div class="category-heading">
+        <span>FIND YOUR PATH</span>
+        <h2>Explore Internship Categories</h2>
+        <p>Choose your field and discover opportunities.</p>
+    </div>
+
+    <div class="category-grid">
+        <button class="category-card" data-category="Python">
+            <span class="category-icon">🐍</span>
+            <strong>Python</strong>
+            <small>Python internships</small>
+        </button>
+
+        <button class="category-card" data-category="Web Development">
+            <span class="category-icon">🌐</span>
+            <strong>Web Development</strong>
+            <small>Frontend &amp; backend</small>
+        </button>
+
+        <button class="category-card" data-category="Data Science">
+            <span class="category-icon">📊</span>
+            <strong>Data Science</strong>
+            <small>Data &amp; machine learning</small>
+        </button>
+
+        <button class="category-card" data-category="Data Analytics">
+            <span class="category-icon">📈</span>
+            <strong>Data Analytics</strong>
+            <small>Insights &amp; reporting</small>
+        </button>
+
+        <button class="category-card" data-category="Cybersecurity">
+            <span class="category-icon">🛡️</span>
+            <strong>Cybersecurity</strong>
+            <small>Security &amp; protection</small>
+        </button>
+
+        <button class="category-card" data-category="Cloud & DevOps">
+            <span class="category-icon">☁️</span>
+            <strong>Cloud &amp; DevOps</strong>
+            <small>Cloud &amp; deployment</small>
+        </button>
+
+        <button class="category-card" data-category="Java Development">
+            <span class="category-icon">☕</span>
+            <strong>Java Development</strong>
+            <small>Java programming</small>
+        </button>
+
+        <button class="category-card" data-category="Database">
+            <span class="category-icon">🗄️</span>
+            <strong>Database</strong>
+            <small>SQL &amp; databases</small>
+        </button>
+
+        <button class="category-card" data-category="Mobile App Development">
+            <span class="category-icon">📱</span>
+            <strong>Mobile App Development</strong>
+            <small>Mobile applications</small>
+        </button>
+
+        <button class="category-card" data-category="Design">
+            <span class="category-icon">🎨</span>
+            <strong>Design</strong>
+            <small>UI &amp; UX design</small>
+        </button>
+
+        <button class="category-card" data-category="Testing & QA">
+            <span class="category-icon">🧪</span>
+            <strong>Testing &amp; QA</strong>
+            <small>Quality &amp; testing</small>
+        </button>
+
+        <button class="category-card" data-category="Software Development">
+            <span class="category-icon">💻</span>
+            <strong>Software Development</strong>
+            <small>Software engineering</small>
+        </button>
+    </div>
+</section>
+    <section class="section" id="jobs">
+      <div class="section-title">
+        <p class="eyebrow">EXPLORE OPPORTUNITIES</p>
+        <h2>Latest Internships</h2>
+        <p>Find opportunities that match your skills.</p>
+      </div>
+
+      <div class="filters" id="categoryFilters">
+        <button class="filter active" data-category="All">
+          All
+        </button>
+        <button class="filter" data-category="Web Development">
+          Web Development
+        </button>
+        <button class="filter" data-category="Python">
+          Python
+        </button>
+        <button class="filter" data-category="Data Science">
+          Data Science
+        </button>
+        <button class="filter" data-category="Design">
+          Design
+        </button>
+      </div>
+
+      <p id="resultCount" class="result-count"></p>
+
+      <div id="jobContainer" class="job-grid"></div>
+
+      <p id="emptyMessage" class="empty" hidden>
+        No internships found. Try another search.
+      </p>
+    </section>
+
+    <section class="about" id="about">
+      <h2>Build your future with CareerStart</h2>
+      <p>
+        A student-focused project to explore internships
+        and learn full stack web development.
+      </p>
+      <a href="#jobs" class="nav-btn">Explore Opportunities</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 CareerStart | Student Project</p>
+  </footer>
+
+  <dialog id="jobDialog" class="job-dialog">
+    <button id="closeDialog" class="close-btn" aria-label="Close">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+</body>
+
+</html>
